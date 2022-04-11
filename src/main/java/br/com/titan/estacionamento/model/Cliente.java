@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.br.CPF;
@@ -32,10 +31,6 @@ public class Cliente {
 	@Column(length = 11, unique = true)
 	private String cpf;
 
-	@NotEmpty(message = "Email é obrigatório!")
-	@Email(message = "Digite um email válido.")
-	@Column(length = 50)
-	private String email;
 
 	@NotNull
 	@JsonFormat(shape = Shape.STRING, pattern = "dd-MM-yyyy")
@@ -69,14 +64,6 @@ public class Cliente {
 		this.cpf = cpf;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
 	public LocalDate getDataNascimento() {
 		return dataNascimento;
 	}
@@ -91,7 +78,6 @@ public class Cliente {
 		int result = 1;
 		result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
 		result = prime * result + ((dataNascimento == null) ? 0 : dataNascimento.hashCode());
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		return result;
@@ -115,11 +101,6 @@ public class Cliente {
 			if (other.dataNascimento != null)
 				return false;
 		} else if (!dataNascimento.equals(other.dataNascimento))
-			return false;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
 			return false;
 		if (id == null) {
 			if (other.id != null)
