@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import br.com.titan.estacionamento.model.Estacionado;
+import br.com.titan.estacionamento.model.movimentacao;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,7 +22,7 @@ import br.com.titan.estacionamento.repository.TiketRepository;
 @MockitoSettings(strictness = Strictness.LENIENT)
 public class TiketServiceTest {
 	
-	Estacionado estacionado = new Estacionado();
+	movimentacao movimentacao = new movimentacao();
 	
 	@InjectMocks
 	TiketService tiketService;
@@ -32,17 +32,17 @@ public class TiketServiceTest {
 	
 	@BeforeEach
 	public void congiguracao() {
-		estacionado.setHora_entrada(LocalTime.of(7, 30));
-		estacionado.setHora_saida(LocalTime.of(7, 30));
-		estacionado.setData_entrada(LocalDate.parse("2020-01-10"));
-		estacionado.setData_saida(LocalDate.parse("2020-01-15"));
+		movimentacao.setHora_entrada(LocalTime.of(7, 30));
+		movimentacao.setHora_saida(LocalTime.of(7, 30));
+		movimentacao.setData_entrada(LocalDate.parse("2020-01-10"));
+		movimentacao.setData_saida(LocalDate.parse("2020-01-15"));
 	}
 
 		
 	@Test
 	public void deveCalcularPeriodoEntreHoraSaidaEHoraEntrada() {
 		
-		LocalTime intervaloDeTempo = tiketService.calculaIntervaloDeTempo(estacionado);
+		LocalTime intervaloDeTempo = tiketService.calculaIntervaloDeTempo(movimentacao);
 		
 		Assertions.assertEquals(LocalTime.parse("00:00"), intervaloDeTempo);
 	}
@@ -50,7 +50,7 @@ public class TiketServiceTest {
 	@Test
 	public void deveCalcularADiferencaEntreMinutosDeEntradaESaida() {
 		
-		LocalTime intervaloDeTempo = tiketService.calculaIntervaloDeTempo(estacionado);
+		LocalTime intervaloDeTempo = tiketService.calculaIntervaloDeTempo(movimentacao);
 
 		assertEquals(LocalTime.parse("00:00"), intervaloDeTempo);
 	}
@@ -58,7 +58,7 @@ public class TiketServiceTest {
 	@Test
 	public void deveCalcularValorBaseadoNoTempo() {
 		
-		LocalTime intervaloDeTempo = tiketService.calculaIntervaloDeTempo(estacionado);
+		LocalTime intervaloDeTempo = tiketService.calculaIntervaloDeTempo(movimentacao);
 		Double valorBaseadoNoTempo = tiketService.calcularValorBaseadoNoTempo(10.0, 2.5, intervaloDeTempo);
 		
 		Assertions.assertEquals(0.0, valorBaseadoNoTempo);
@@ -68,7 +68,7 @@ public class TiketServiceTest {
 	@Test
 	public void deveLancarUmaExceptionS_QuandoDataEntradaForDepoisDeSaida() {
 		
-		Boolean entradaDepoisDeSaida = tiketService.validaIntervaloDeTempo(estacionado);
+		Boolean entradaDepoisDeSaida = tiketService.validaIntervaloDeTempo(movimentacao);
 		
 		Assertions.assertDoesNotThrow(() -> entradaDepoisDeSaida, "Erro! Data de entrada é posterior a data de saída.");
 	}
@@ -76,7 +76,7 @@ public class TiketServiceTest {
 	@Test
 	public void deveLancarUmaExceptionS_QuandoHoraEntradaForDepoisDeSaida() {
 		
-		Boolean entradaDepoisDeSaida = tiketService.validaIntervaloDeTempo(estacionado);
+		Boolean entradaDepoisDeSaida = tiketService.validaIntervaloDeTempo(movimentacao);
 		
 		Assertions.assertDoesNotThrow(() -> entradaDepoisDeSaida, "Erro! hora de entrada é posterior a data de saída.");
 	}

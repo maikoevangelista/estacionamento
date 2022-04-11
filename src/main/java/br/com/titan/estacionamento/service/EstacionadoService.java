@@ -4,9 +4,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-import br.com.titan.estacionamento.model.Estacionado;
+import br.com.titan.estacionamento.model.movimentacao;
 import br.com.titan.estacionamento.model.Tiket;
-import br.com.titan.estacionamento.repository.EstacionadoRepository;
+import br.com.titan.estacionamento.repository.movimentacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
 public class EstacionadoService {
 	
 	@Autowired
-	private EstacionadoRepository repository;
+	private movimentacaoRepository repository;
 	
 	@Autowired
 	PrecoService precoService;
@@ -37,87 +37,87 @@ public class EstacionadoService {
 	 * @return Retorna um Objeto com registro de entrada de um veículo no estacionamento, 
 	 * com id do registro, data e hora de entrata, id do parque e id do veículo.
 	 */
-	public Estacionado registrarEntrada(Estacionado estacionado) {
+	public movimentacao registrarEntrada(movimentacao movimentacao) {
 		
-		estacionado.setData_entrada(LocalDate.now());
-		estacionado.setHora_entrada(LocalTime.now());
-		estacionado.setParque(parqueService.buscarParque());
+		movimentacao.setData_entrada(LocalDate.now());
+		movimentacao.setHora_entrada(LocalTime.now());
+		movimentacao.setParque(parqueService.buscarParque());
 		
 		parqueService.diminuirQuantidadeDeVagasDisponiveisEmUm();
 		
-		return repository.save(estacionado);
+		return repository.save(movimentacao);
 	}
 	
 	/**
 	 * @author Cristian Bittencourt Candia
-	 * @param estacionado
+	 * @param movimentacao
 	 * @return Retorna um Objeto "cupom de pagamento" com os dados do cliente, data e hora de saida e entrada
 	 * dados do veículo, preço por hora e hora fração e preço total a ser pago.
 	 */
-	public Tiket registrarSaida(Estacionado estacionado) {
+	public Tiket registrarSaida(movimentacao movimentacao) {
 		
-		Estacionado estacionadoSaindo = repository.findById(estacionado.getId()).get();
-		Estacionado estacionadoSaindoRegistrado = registrarHoraSaida(registrarDataSaida(estacionadoSaindo));
+		movimentacao movimentacaoSaindo = repository.findById(movimentacao.getId()).get();
+		movimentacao movimentacaoSaindoRegistrado = registrarHoraSaida(registrarDataSaida(movimentacaoSaindo));
 		
-		repository.save(estacionadoSaindoRegistrado);
+		repository.save(movimentacaoSaindoRegistrado);
 		
 		parqueService.aumentarQuantidadeDeVagasDisponiveisEmUm();
 		
-		return tiketService.gerarCupomPagamento(estacionadoSaindoRegistrado);
+		return tiketService.gerarCupomPagamento(movimentacaoSaindoRegistrado);
 	}
 	
 	/**
 	 * 
 	 * @author Cristian Bittencourt Candia
-	 * @param estacionado
+	 * @param movimentacao
 	 * @return Retorna um Objeto de Estacionado com hora de saída registrada.
 	 */
-	public Estacionado registrarHoraSaida(Estacionado estacionado) {	
-			estacionado.setHora_saida(LocalTime.now());
+	public movimentacao registrarHoraSaida(movimentacao movimentacao) {
+			movimentacao.setHora_saida(LocalTime.now());
 			
-			return estacionado;
+			return movimentacao;
 	}
 	
 	/**
 	 * @author Cristian Bittencourt Candia
-	 * @param estacionado
+	 * @param movimentacao
 	 * @return Registra a hora de saida e retorna um Objeto com todos os demais registros de 
 	 * estacionamento.
 	 */
-	public Estacionado registrarDataSaida(Estacionado estacionado) {
+	public movimentacao registrarDataSaida(movimentacao movimentacao) {
 		
-		estacionado.setData_saida(LocalDate.now());
+		movimentacao.setData_saida(LocalDate.now());
 		
-		return estacionado;	
+		return movimentacao;
 	}
 	
 	/**
 	 * @author Cristian Bittencourt Candia
-	 * @param estacionado
+	 * @param movimentacao
 	 * @return Retorna um Objeto com o registro de estacionamento.
 	 */
-	public Estacionado buscarRegistroPorId(Estacionado estacionado) {
-		return repository.findById(estacionado.getId()).get();
+	public movimentacao buscarRegistroPorId(movimentacao movimentacao) {
+		return repository.findById(movimentacao.getId()).get();
 	}
 	
 	/**
 	 * @author Cristian Bittencourt Candia
 	 * @return Retorna uma lista com todos os registros de estacionamento.
 	 */
-	public List<Estacionado> buscarTodosRegistros(){
-		return (List<Estacionado>) repository.findAll();
+	public List<movimentacao> buscarTodosRegistros(){
+		return (List<movimentacao>) repository.findAll();
 	}
 	/**
 	 * @author Cristian Bittencour Candia
-	 * @param estacionado
+	 * @param movimentacao
 	 * @return Retorna os dados de registro de entrada no estacionamento preenchidos manualmente.
 	 */
-	public Estacionado preencherDadosManualmente(Estacionado estacionado) {
-		Estacionado estacionadoManual = new Estacionado();
-		estacionadoManual.setData_entrada(estacionado.getData_entrada());
-		estacionadoManual.setHora_entrada(estacionado.getHora_entrada());
-		estacionadoManual.setParque(parqueService.buscarParque());
-		estacionadoManual.setVeiculo(estacionado.getVeiculo());
-		return estacionadoManual;
+	public movimentacao preencherDadosManualmente(movimentacao movimentacao) {
+		movimentacao movimentacaoManual = new movimentacao();
+		movimentacaoManual.setData_entrada(movimentacao.getData_entrada());
+		movimentacaoManual.setHora_entrada(movimentacao.getHora_entrada());
+		movimentacaoManual.setParque(parqueService.buscarParque());
+		movimentacaoManual.setVeiculo(movimentacao.getVeiculo());
+		return movimentacaoManual;
 	}
 }

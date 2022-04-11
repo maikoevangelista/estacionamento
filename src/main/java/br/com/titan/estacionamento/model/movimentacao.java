@@ -12,7 +12,7 @@ import javax.persistence.OneToOne;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-public class Estacionado {
+public class movimentacao {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,7 +36,7 @@ public class Estacionado {
 	@OneToOne
 	private Veiculo veiculo;
 
-	public Estacionado() {
+	public movimentacao() {
 
 	}
 
@@ -118,7 +118,7 @@ public class Estacionado {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Estacionado other = (Estacionado) obj;
+		movimentacao other = (movimentacao) obj;
 		if (data_entrada == null) {
 			if (other.data_entrada != null)
 				return false;

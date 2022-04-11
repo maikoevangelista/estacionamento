@@ -2,7 +2,7 @@ package br.com.titan.estacionamento.endpoint;
 
 import java.util.List;
 
-import br.com.titan.estacionamento.model.Estacionado;
+import br.com.titan.estacionamento.model.movimentacao;
 import br.com.titan.estacionamento.model.Tiket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,22 +20,22 @@ public class EstacionadoEndpoint {
 	EstacionadoService estacionadoService;
 
 	@PostMapping("salvar")
-	public Estacionado registrarEntradaNoEstacionamento(Estacionado estacionado) {
-		return estacionadoService.registrarEntrada(estacionado);
+	public movimentacao registrarEntradaNoEstacionamento(movimentacao movimentacao) {
+		return estacionadoService.registrarEntrada(movimentacao);
 	}
 	
 	@PostMapping("preencher")
-	public Estacionado preencherDadosManualmente(Estacionado estacionado) {
-		return estacionadoService.preencherDadosManualmente(estacionado);
+	public movimentacao preencherDadosManualmente(movimentacao movimentacao) {
+		return estacionadoService.preencherDadosManualmente(movimentacao);
 	}
 
 	@RequestMapping
-	public Tiket registrarSaidaDoEstacionamento(Estacionado estacionado) {
-		return estacionadoService.registrarSaida(estacionado);
+	public Tiket registrarSaidaDoEstacionamento(movimentacao movimentacao) {
+		return estacionadoService.registrarSaida(movimentacao);
 	}
 
 	@GetMapping
-	public List<Estacionado> buscarTodosRegisrosDeEstacionamento() {
+	public List<movimentacao> buscarTodosRegisrosDeEstacionamento() {
 		return estacionadoService.buscarTodosRegistros();
 	}
 }
