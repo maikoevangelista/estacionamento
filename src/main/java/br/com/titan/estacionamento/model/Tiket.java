@@ -22,9 +22,6 @@ public class Tiket {
 	private Parque parque;
 	@Column(length = 45)
 	private String nomeCliente;
-	@CPF(message = "CPF é obrgatório na cupom de pagamento!")
-	@Column(length = 11, unique = true)
-	private String CPFCliente;
 	@Column(length = 10)
 	private String tipoVeiculo;
 	@Column(length = 10)
@@ -87,14 +84,6 @@ public class Tiket {
 
 	public void setHoraSaida(LocalTime horaSaida) {
 		this.horaSaida = horaSaida;
-	}
-
-	public String getCPFCliente() {
-		return CPFCliente;
-	}
-
-	public void setCPFCliente(String cPFCliente) {
-		CPFCliente = cPFCliente;
 	}
 
 	public String getNomeCliente() {

@@ -32,8 +32,7 @@ public class TiketService {
 	
 	/**
 	 * 
-	 * @param movimentacao
-	 * @return Retorna um Cupom para pagamento, com os dados pessoais do cliente, data e hora de entrada 
+	 * @return Retorna um Cupom para pagamento, com os dados pessoais do cliente, data e hora de entrada
 	 * e saída, valor total a ser pago, valor por hora e valor hora fração.
 	 */
 	public Tiket gerarCupomPagamento(movimentacao movimentacao) {
@@ -60,11 +59,6 @@ public class TiketService {
 		/*
 		 * Busca registros do cliente que está saindo.
 		 */
-		Cliente clienteSaindo = clienteService.buscarPorId(veiculoSaindo.getCliente());
-		
-		String nomeClienteSaindo = clienteSaindo.getNome();
-		String cpfClienteSaindo = clienteSaindo.getCpf();
-		
 		/*
 		 * Busca pelos valores de hora e hora fração referentes ao tipo de veículo do cliente.
 		 */
@@ -84,8 +78,6 @@ public class TiketService {
 		 * Registrando as informações no cupom.
 		 */
 		Tiket cupomPagamento = new Tiket();
-		cupomPagamento.setNomeCliente(nomeClienteSaindo);
-		cupomPagamento.setCPFCliente(cpfClienteSaindo);
 		cupomPagamento.setTipoVeiculo(tipoVeiculoSaindo);
 		cupomPagamento.setVeiculoPlaca(placaVeiculoSaindo);
 		cupomPagamento.setDataEntrada(dataEntrada);

@@ -62,8 +62,7 @@ public class ParqueService {
 	/**
 	 * @author Cristian Bittencourt Candia
 	 * 
-	 * @throws Lança uma RuntimeException do tipo EstacionamentoLotadoException 
-	 * quando o estacionamento está lotado. 
+	 * quando o estacionamento está lotado.
 	 * 
 	 * @return Diminui em um a quantidade de vagas disponiveis do estacionamento quando um carro 
 	 * ocupa uma vaga.

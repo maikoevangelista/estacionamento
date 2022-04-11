@@ -33,8 +33,7 @@ public class EstacionadoService {
 	
 	/**
 	 * @author Cristian Bittencourt Candia
-	 * @param  Recebe um Objeto do tipo Estacionado como parâmetro
-	 * @return Retorna um Objeto com registro de entrada de um veículo no estacionamento, 
+	 * @return Retorna um Objeto com registro de entrada de um veículo no estacionamento,
 	 * com id do registro, data e hora de entrata, id do parque e id do veículo.
 	 */
 	public movimentacao registrarEntrada(movimentacao movimentacao) {
