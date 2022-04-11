@@ -16,8 +16,7 @@ public class ClienteService {
 	
 	/**
 	 * 
-	 * @param cliente
-	 * @return Retorna um JSON com o Cliente salvo ou um erro se 
+	 * @return Retorna um JSON com o Cliente salvo ou um erro se
 	 * não for bem sucedido.
 	 */
 	public Cliente salvar(Cliente cliente) {
@@ -26,8 +25,7 @@ public class ClienteService {
 
 	/**
 	 * 
-	 * @param cliente
-	 * @return Retorna um JSON com o um Cliente ou um erro se 
+	 * @return Retorna um JSON com o um Cliente ou um erro se
 	 * não for bem sucedido.
 	 */	
 	public Cliente buscarPorId(Cliente cliente) {
@@ -36,8 +34,7 @@ public class ClienteService {
 	
 	/**
 	 * 
-	 * @param cliente
-	 * @return Retorna um JSON com o todos Clientes registrados ou um erro se 
+	 * @return Retorna um JSON com o todos Clientes registrados ou um erro se
 	 * não for bem sucedido.
 	 */
 	public ArrayList<Cliente> buscarTodos() {
