@@ -38,8 +38,6 @@ public class ClienteServiceTest {
 
 		cliente.setId(2L);
 		cliente.setNome("Jakson");
-		cliente.setCpf("02512678067");
-		cliente.setDataNascimento(LocalDate.parse("1992-02-14"));
 		
 	}
 

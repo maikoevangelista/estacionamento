@@ -13,7 +13,7 @@
 	<artifactId>estacionamento</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>estacionamento</name>
-	<description>Demo project for Spring Boot</description>
+	<description>O teste consiste em desenvolver um simples sistema de estacionamento utilizando Java.</description>
 
 	<properties>
 		<java.version>11</java.version>

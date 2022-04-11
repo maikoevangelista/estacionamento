@@ -49,12 +49,7 @@ public class ClienteEndpointTest {
 		
 		cliente.setId(1L);
 		cliente.setNome("Cristian");
-		cliente.setEmail("cristian.candia@gmail.com");
-		cliente.setCpf("02512678067");
-		cliente.setDataNascimento(LocalDate.parse("2010-10-10"));
-		
 		clientes.add(cliente);
-
 	}
 	
 	
