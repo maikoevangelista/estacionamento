@@ -123,9 +123,9 @@ public class TiketService {
 		Integer tempoTotalMinutos = intervaloDeTempo.getMinute();
 		
 		Double valorHoras = tempoTotalHoras * precoPorHora;
-		Double valorMinutos = (tempoTotalMinutos / 15) * precoHoraFracao;
+		Double valorDemais = (tempoTotalMinutos / 4) * precoHoraFracao;
 		
-		Double valorTotal = valorHoras + valorMinutos;
+		Double valorTotal = valorHoras + valorDemais;
 		
 		return valorTotal;
 	}
